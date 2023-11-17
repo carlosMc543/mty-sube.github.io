@@ -5,41 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../img/ubicacion.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/style1.css">
+    <!--<link rel="stylesheet" href="../css/style1.css">-->
     <title>Ubicación 223</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">      
-        <style>
-            html, body {
-              height: 370px;
-              padding: 0;
-              
-              }
-            #map {
-             height: 300px;
-             width: 400px;
-             overflow:hidden;
-             margin: 50px;
-             border: thin solid #333;
-             
-            
-            }
-          </style>
-      <script>
-        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-          key: "AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw",
-          // Add other bootstrap parameters as needed, using camel case.
-          // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        html, body {
+            height: 370px;
+            padding: 0;
+
+        }
+        #map {
+            height: 300px;
+            width: 400px;
+            overflow:hidden;
+            margin: 50px;
+            border: thin solid #333;
+
+        }
+    </style>
+    <script>
+        (g => {
+            var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+        })({
+            key: "AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw",
+            // Add other bootstrap parameters as needed, using camel case.
+            // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
         });
-      </script>
-      
-    </head>
+    </script>
+
+</head>
 
 <body>
     <!--API GOOGLE MAPS-->
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw&libraries=places"></script>-->
-   <!--JAVASCRIPT-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!--JAVASCRIPT-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <header>
     </header>
     <section class="content">
@@ -47,34 +49,32 @@
             <p>Ubicación en tiempo real </p>
         </div>
     </section>
-  
-     <div id="map" >
+
+    <div id="map">
     </div>
 
-  
-    
     <script>
         //java script para mostrar mapa
-      // Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
-let map, infoWindow;
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+        let map, infoWindow;
 
-function initMap() {
+        function initMap() {
             // Obtener los parámetros de la URL
             const urlParams = new URLSearchParams(window.location.search);
             const latitud = urlParams.get('lat');
             const longitud = urlParams.get('long');
 
             // Crear el mapa y posicionar el marcador en la ubicación proporcionada
-            let map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: parseFloat(latitud), lng: parseFloat(longitud) },
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: new google.maps.LatLng(parseFloat(latitud), parseFloat(longitud)),
                 zoom: 18,
             });
 
             let marker = new google.maps.Marker({
-                position: { lat: parseFloat(latitud), lng: parseFloat(longitud) },
+                position: new google.maps.LatLng(parseFloat(latitud), parseFloat(longitud)),
                 map: map,
                 title: "Ubicación actual",
             });
@@ -84,11 +84,9 @@ function initMap() {
         window.addEventListener("load", initMap);
     </script>
 
-
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw&callback=initMap">
     </script>
-      <script async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOQeivshl22o4MFZVAI40Lm1iNYxErVZw&callback=initMap">
-      </script>
     <div class="container">
         <nav>
             <center>
